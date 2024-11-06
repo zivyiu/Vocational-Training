@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablet</title>
+    <style>
+        /* 「*」 = 通用選擇器，代表全部 */
+        * {
+            /* 自動計算，去除padding、border的面積縮放效應 */
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .nav {
+            background-image: url(./img_homework/MAP.jpg);
+            background-position: top;
+            background-size: contain;
+            width: 100%;
+            height: 100px;
+            float: left;
+            position: relative;
+        }
+
+        .logo {
+            background-image: url(./img_homework/_Huf58epDlt9vXiO8IIfPXxtXI.png);
+            background-position: center;
+            background-size: cover;
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo:hover {
+            transition-duration: 2s;
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+
+        .nav_btn_all {
+            height: 100px;
+        }
+
+        .nav_btn {
+            padding: 10px;
+            text-align: center;
+            margin-right: 10px;
+            margin-top: calc(50px - 22px);
+            border: solid black;
+            float: right;
+            background: linear-gradient(to top, rgb(117, 84, 13), rgb(255, 255, 255));
+            color: rgb(0, 0, 0);
+            font-weight: bolder;
+            text-shadow: white 0.1em 0.1em 0.2em;
+            border-radius: 20%;
+            font-family: "メイリオ", Meiryo, "Noto Sans";
+        }
+
+        .nav_btn:hover {
+            transition-duration: 1s;
+            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .nav_btn:active {
+            color: white;
+        }
+
+        .container {
+            background-image: url(./img_homework/BG3.jpg);
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: calc(100% - 100px);
+            float: left;
+            padding: 100px 100px;
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+
+        .img {
+            background-size: cover;
+            background-position: top;
+            width: calc((100% - 20px)/3);
+            height: calc(50% - 5px);
+            float: left;
+        }
+
+        .img:hover {
+            transition-duration: 1s;
+            border-radius: 10%;
+            box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.8);
+            transform: rotateY(360deg);
+        }
+
+        .img_1 {
+            background-image: url(./img_homework/RIMUSAROMINSA.jpg);
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .img_2 {
+            background-image: url(./img_homework/GURIDANIA.jpg);
+            width: calc(50% - 5px);
+            margin-right: 10px;
+        }
+
+        .img_3 {
+            background-image: url(./img_homework/URUDAHA.jpg);
+            width: calc(50% - 5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <!-- 漢堡條按鈕放置處 -->
+        <div class="logo"></div>
+        <div class="nav_btn_all">
+            <a href="https://jp.finalfantasyxiv.com/lodestone/special/grandcompany/maelstrom/" target="_blank"
+                class="nav_btn">黒渦団</a>
+            <a href="https://jp.finalfantasyxiv.com/lodestone/special/grandcompany/twinadder/" target="_blank"
+                class="nav_btn">双蛇党</a>
+            <a href="https://jp.finalfantasyxiv.com/lodestone/special/grandcompany/immortalflames/" target="_blank"
+                class="nav_btn">不滅隊</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="img img_1"></div>
+            <div class="img img_2"></div>
+            <div class="img img_3"></div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
+<!-- 需求分析 -->
+<!-- 1.導覽區（nav）：
+        a.logo
+            i.特效
+        b.btn
+            i.三個按鈕
+            ii.超連結
+            iii.hover、active特效
+            iv.手機版的漢堡條按鈕，按下後須出現選單 -->
+<!-- 2.內容區
+        a.圖片區
+            i.三張圖片
+            ii.hover特效 -->

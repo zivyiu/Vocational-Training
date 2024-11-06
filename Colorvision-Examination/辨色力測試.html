@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: url(./img/bg.jpg);
+            background-size: cover;
+            margin: unset;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 800px;
+            height: 800px;
+            margin: unset;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+
+        }
+
+        .box {
+            background-color: gold;
+            width: 50%;
+            height: 50%;
+            text-align: center;
+            line-height: 100px;
+            border: 5px solid white;
+            border-radius: 10%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .answer_box {
+            opacity: 0.5;
+        }
+
+        .home_page {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 30px 0px white;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(255, 207, 117);
+            text-shadow: 1px 1px 10px rgb(0, 0, 0), 1px 1px 10px rgb(0, 0, 0);
+        }
+
+        p {
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            color: rgb(255, 207, 117);
+            text-shadow: 1px 1px 10px rgb(0, 0, 0), 1px 1px 10px rgb(0, 0, 0);
+
+        }
+
+        .score {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+        }
+
+        .score p {
+            color: azure;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .game_start,
+        .game_continue {
+            height: 50px;
+            width: 200px;
+            border-radius: 10%;
+            margin: auto;
+            font-size: 20px;
+            border: 2px dashed rgb(0, 0, 0);
+            color: black;
+        }
+
+        .game {
+            background-color: lemonchiffon;
+            padding: 30px;
+            border-radius: 5%;
+        }
+
+        .game_option {
+            display: flex;
+        }
+
+        span,
+        .time_counter {
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .game_pause,
+        .reset_game {
+            margin-left: 20px;
+            border-radius: 10%;
+            height: 30px;
+            width: 100px;
+            font-size: 16px;
+            text-align: center;
+            border: 2px dashed rgb(0, 0, 0);
+            color: black;
+        }
+
+        .game .game_option{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+        
+        .game .game_option span{
+            margin-left: auto;
+        }
+
+        .game .game_option .time_counter{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home_page">
+        <div class="menu">
+            <h1>辨色力測試</h1>
+            <p></p>
+            <button type="button" class="game_start">遊戲開始</button>
+            <button type="button" class="game_continue">繼續遊玩</button>
+        </div>
+        <div class="score">
+            <p></p>
+            <p>歷史分數：<span class="player_result"></span>
+        </div>
+    </div>
+    <div class="game">
+        <div class="game_option">
+            <button type="button" class="game_pause">暫停</button>
+            <button type="button" class="reset_game">重置遊戲</button>
+            <span>剩餘時間：</span>
+            <div class="time_counter"></div>
+
+        </div>
+        <div class="container">
+            <div class="box answerBox"></div>
+        </div>
+    </div>
+    <script>
+        const homepage = document.querySelector('.home_page');
+        const game = document.querySelector('.game');
+        const gameStart = document.querySelector('.game_start');
+        const gameContinue = document.querySelector('.game_continue');
+        const gamePause = document.querySelector('.game_pause');
+        const gameReset = document.querySelector('.reset_game');
+
+        let player_score = document.querySelector('.player_result');
+        let score = 0;
+        let highest_score = 0;
+
+
+        let counter = 20;
+        const timeCounter = document.querySelector('.time_counter');
+        let timeInterval;
+        let check = 0;
+
+        let container = document.querySelector('.container');
+        let level = 2;
+        let passCount = 0;
+        let box_size = 100 / level;
+
+        game.classList.add('hide');
+        gameContinue.classList.add('hide');
+        timeCounter.textContent = counter;
+
+        initialGame();
+
+        gameStart.addEventListener('click', () => {
+            homepage.classList.add('hide');
+            game.classList.remove('hide');
+            startGame();
+
+        });
+
+        gameContinue.addEventListener('click', () => {
+            homepage.classList.add('hide');
+            game.classList.remove('hide');
+            timeInterval = setInterval(timeLimit, 1000);
+        });
+
+        gamePause.addEventListener('click', () => {
+            homepage.classList.remove('hide');
+            game.classList.add('hide');
+            gameStart.classList.add('hide');
+            gameContinue.classList.remove('hide');
+            clearInterval(timeInterval);
+        });
+
+        gameReset.addEventListener('click', () => {
+            check = 1;
+            initialGame();
+        });
+
+        //====================================================================
+
+        function startGame() {
+            counter = 20;
+            timeCounter.textContent = counter;
+            clearInterval(timeInterval);
+            timeInterval = setInterval(timeLimit, 1000);
+            level = 2;
+            passCount = 0;
+            box_size = 100 / level;
+            clickAnswer();
+        }
+
+        function initialGame() {
+            homepage.classList.remove('hide');
+            game.classList.add('hide');
+            gameStart.classList.remove('hide');
+            gameContinue.classList.add('hide');
+
+            clearInterval(timeInterval);
+            timeCounter.textContent = counter;
+            if (highest_score < score) {
+                highest_score = score;
+                player_score.textContent = score;
+            }
+            score = 0;
+            check = 0;
+        }
+
+        function timeLimit() {
+            counter--;
+            timeCounter.textContent = counter;
+            if (counter == -1) {
+                alert('時間到！');
+                initialGame();
+            }
+        }
+
+        function getRGB() {
+            let r = Math.floor(Math.random() * 255 + 1);
+            let g = Math.floor(Math.random() * 255 + 1);
+            let b = Math.floor(Math.random() * 255 + 1);
+            let color = `rgb(${r},${g},${b})`;
+            return color;
+        }
+
+        function clickAnswer() {
+            container.innerHTML = '';
+            for (let i = 0; i < level ** 2; i++) {
+                container.innerHTML += `<div class="box"></div>`;
+            }
+            const boxAll = document.querySelectorAll('.box');
+            const color = getRGB();
+            for (let i = 0; i < boxAll.length; i++) {
+                const boxTemp = boxAll[i];
+                boxTemp.style.width = `${box_size}%`;
+                boxTemp.style.height = `${box_size}%`;
+                boxTemp.style.backgroundColor = color;
+            }
+
+            const answerIndex = Math.floor(Math.random() * (level ** 2));
+            const answerBox = boxAll[answerIndex];
+            answerBox.classList.add('answer_box');
+            answerBox.style.opacity = `${0.7 + level * 0.01 + passCount * 0.01}`;
+
+            answerBox.addEventListener('click', function () {
+                passCount++;
+                score = score + level;
+
+                if (passCount == level) {
+                    level++;
+                    passCount = 0;
+                    box_size = 100 / level;
+
+                }
+                if (level < 10) {
+                    clickAnswer();
+                }
+                else {
+                    initialGame();
+
+                }
+            });
+        };
+
+    </script>
+</body>
+
+</html>

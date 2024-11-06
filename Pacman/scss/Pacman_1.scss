@@ -1,0 +1,504 @@
+@keyframes top_action {
+    0% {
+        transform: rotate(-50deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-50deg);
+    }
+}
+
+@keyframes bottom_action {
+    0% {
+        transform: rotate(50deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(50deg);
+    }
+}
+
+@keyframes pacman_move {
+    0% {
+        left: 0%;
+        top: 0%;
+    }
+
+    24% {
+        left: 100%;
+        top: 0;
+        transform: translate(-100%, 0) rotate(0deg);
+    }
+
+    25% {
+        left: 100%;
+        top: 0;
+        transform: translate(-100%, 0) rotate(90deg);
+    }
+
+    49% {
+        left: 100%;
+        top: 100%;
+        transform: translate(-100%, -100%) rotate(90deg);
+    }
+
+    50% {
+        left: 100%;
+        top: 100%;
+        transform: translate(-100%, -100%) rotate(180deg);
+    }
+
+    74% {
+        left: 0;
+        top: 100%;
+        transform: translate(0, -100%) rotate(180deg);
+    }
+
+    75% {
+        left: 0;
+        top: 100%;
+        transform: translate(0, -100%) rotate(270deg);
+    }
+
+    99% {
+        left: 0;
+        top: 0;
+        transform: rotate(270deg);
+    }
+
+    100% {
+        left: 0;
+        top: 0;
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dot {
+    0% {
+        background: transparent;
+    }
+
+    50% {
+        background: gold;
+    }
+}
+
+@keyframes shaker {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    29% {
+        transform: rotate(0deg);
+    }
+
+
+    30% {
+        transform: rotate(1deg);
+    }
+
+    31% {
+        transform: rotate(2deg);
+    }
+
+    33% {
+        transform: rotate(1deg);
+    }
+
+    35% {
+        transform: rotate(0deg);
+    }
+
+    37% {
+        transform: rotate(-1deg);
+    }
+
+    39% {
+        transform: rotate(-2deg);
+    }
+
+    41% {
+        transform: rotate(-1deg);
+    }
+
+    43% {
+        transform: rotate(0deg);
+    }
+
+
+    45% {
+        transform: rotate(1deg);
+    }
+
+    47% {
+        transform: rotate(2deg);
+    }
+
+    49% {
+        transform: rotate(1deg);
+    }
+
+    51% {
+        transform: rotate(0deg);
+    }
+
+    53% {
+        transform: rotate(-1deg);
+    }
+
+    55% {
+        transform: rotate(-2deg);
+    }
+
+    57% {
+        transform: rotate(-1deg);
+    }
+
+    59% {
+        transform: rotate(0deg);
+    }
+
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes jump {
+    0% {
+        transform: scale(1, 1) translate(0px, 0px);
+    }
+
+    30% {
+        transform: scale(1, 0.8) translate(0px, 10px);
+    }
+
+    75% {
+        transform: scale(1, 1.1) translate(0px, -25px);
+    }
+
+    100% {
+        transform: scale(1, 1) translate(0px, 0px);
+    }
+
+}
+
+@keyframes roll {
+    0% {
+        left: 0;
+        top: 0;
+        transform: translate(-100%, -100%);
+    }
+
+    24% {
+        left: 100%;
+        top: 0;
+        transform: translate(0, -100%) rotate(0deg);
+    }
+
+    25% {
+        left: 100%;
+        top: 0;
+        transform: translate(0, -100%) rotate(90deg);
+    }
+
+    49% {
+        left: 100%;
+        top: 100%;
+        transform: translate(0, 0) rotate(90deg);
+    }
+
+    50% {
+        left: 100%;
+        top: 100%;
+        transform: translate(0, 0) rotate(180deg);
+    }
+
+    74% {
+        left: 0;
+        top: 100%;
+        transform: translate(-100%, 0) rotate(180deg);
+    }
+
+    75% {
+        left: 0;
+        top: 100%;
+        transform: translate(-100%, 0) rotate(270deg);
+    }
+
+    99% {
+        left: 0;
+        top: 0;
+        transform: translate(-100%, -100%) rotate(270deg);
+    }
+
+    100% {
+        left: 0;
+        top: 0;
+        transform: translate(-100%, -100%) rotate(360deg);
+    }
+}
+
+// ========================================================================================
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: unset;
+}
+
+.container {
+    background-color: rgb(9, 0, 66);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+
+    .bg {
+        background: linear-gradient(to top, black, gray);
+        width: 500px;
+        height: 500px;
+        border-radius: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        box-shadow: 0px 0px 5px black;
+
+        &::before {
+            content: "- Game Start -";
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 1px 1px 5px white, 1px 1px 5px white, 1px 1px 5px white;
+            position: absolute;
+            border: 3px solid black;
+            box-shadow: 3px 3px white;
+            animation: jump 1s linear infinite;
+        }
+
+        &:hover {
+            transition-duration: 1s;
+            animation: shaker 1s linear infinite;
+        }
+
+        .pacman_body {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            animation: pacman_move 12s linear infinite;
+            overflow: hidden;
+
+            &::before {
+                position: absolute;
+                content: "";
+                background-color: transparent;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border-right: 50px solid transparent;
+                border-top: 50px solid gold;
+                border-left: 50px solid gold;
+                border-bottom: 50px solid transparent;
+                rotate: 45deg;
+                animation: top_action 1s infinite;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                background-color: transparent;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border-right: 50px solid gold;
+                border-top: 50px solid transparent;
+                border-left: 50px solid transparent;
+                border-bottom: 50px solid gold;
+                rotate: 45deg;
+                animation: bottom_action 1s infinite;
+            }
+        }
+
+        .ghost {
+            position: absolute;
+            z-index: 99;
+            height: 100px;
+            width: 100px;
+            background: purple;
+            border-top-left-radius: 70px;
+            border-top-right-radius: 70px;
+            animation: roll 12s linear infinite reverse;
+
+            &::before,
+            &::after {
+                position: absolute;
+                z-index: 99;
+                content: '';
+                top: 30px;
+                left: 5px;
+                height: 25px;
+                width: 20px;
+                border-radius: 50%;
+                background: white;
+            }
+
+            &::after {
+                left: 40px;
+            }
+
+            .eyes::before,
+            .eyes::after {
+                position: absolute;
+                content: '';
+                height: 10px;
+                width: 10px;
+                background: black;
+                border-radius: 100%;
+                top: 35px;
+                left: 5px;
+                z-index: 99;
+            }
+
+            .eyes::after {
+                z-index: 100;
+                left: 40px;
+            }
+
+            .skirt {
+                position: absolute;
+                background-color: purple;
+                height: 20px;
+                width: 33px;
+                border-top: solid 20px transparent;
+                border-left: solid 15px rgb(9, 0, 66);
+                border-right: solid 15px rgb(9, 0, 66);
+                bottom: 0px;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    height: 20px;
+                    width: 34px;
+                    border-top: solid 20px transparent;
+                    border-left: solid 15px rgb(9, 0, 66);
+                    border-right: solid 15px rgb(9, 0, 66);
+                    left: 18px;
+                    bottom: 0px;
+
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    height: 20px;
+                    width: 33px;
+                    border-top: solid 20px transparent;
+                    border-left: solid 15px rgb(9, 0, 66);
+                    border-right: solid 15px rgb(9, 0, 66);
+                    left: 52px;
+                    bottom: 0px;
+                }
+            }
+
+        }
+
+        .dot_container {
+
+            .dot {
+                background: gold;
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                animation: dot 12s infinite steps(1);
+            }
+
+            .dot:nth-child(1) {
+                top: 10%;
+                left: 25%;
+                animation-delay: 0.5s;
+            }
+
+            .dot:nth-child(2) {
+                top: 10%;
+                left: 50%;
+                animation-delay: 1.5s;
+            }
+
+            .dot:nth-child(3) {
+                top: 10%;
+                left: 75%;
+                animation-delay: 2.5s;
+            }
+
+            .dot:nth-child(4) {
+                top: 25%;
+                right: 10%;
+                animation-delay: 3.5s;
+            }
+
+            .dot:nth-child(5) {
+                top: 50%;
+                right: 10%;
+                animation-delay: 4.5s;
+            }
+
+            .dot:nth-child(6) {
+                top: 75%;
+                right: 10%;
+                animation-delay: 5.5s;
+            }
+
+            .dot:nth-child(7) {
+                bottom: 10%;
+                right: 25%;
+                animation-delay: 6.5s;
+            }
+
+            .dot:nth-child(8) {
+                bottom: 10%;
+                right: 50%;
+                animation-delay: 7.5s;
+            }
+
+            .dot:nth-child(9) {
+                bottom: 10%;
+                right: 75%;
+                animation-delay: 8.5s;
+            }
+
+            .dot:nth-child(10) {
+                bottom: 25%;
+                left: 10%;
+                animation-delay: 9.5s;
+            }
+
+            .dot:nth-child(11) {
+                bottom: 50%;
+                left: 10%;
+                animation-delay: 10.5s;
+            }
+
+            .dot:nth-child(12) {
+                bottom: 75%;
+                left: 10%;
+                animation-delay: 11.5s;
+            }
+        }
+    }
+}

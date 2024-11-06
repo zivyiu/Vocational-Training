@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes roll {
+            0% {
+                background-image: url(./img/dice_1.png);
+            }
+
+            20% {
+                background-image: url(./img/dice_2.png);
+            }
+
+            40% {
+                background-image: url(./img/dice_3.png);
+            }
+
+            60% {
+                background-image: url(./img/dice_4.png);
+            }
+
+            80% {
+                background-image: url(./img/dice_5.png);
+            }
+
+            100% {
+                background-image: url(./img/dice_6.png);
+            }
+        }
+
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box;
+        }
+        body{
+            background:radial-gradient(circle at center,gold,black);
+        }
+
+        .container {
+            margin: auto;
+            padding: 100px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container .text_area{
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px white;
+        }
+
+        .container .dice_area {
+            width: 500px;
+            height: 300px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+
+        .container .dice_area .dice_1,
+        .container .dice_area .dice_2,
+        .container .dice_area .dice_3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            background-image: url(./img/dice_1.png);
+            border-radius: 20%;
+            background-size: cover;
+            animation: roll 0.5s linear infinite;
+        }
+
+        .container .result_area {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .container .result_area .roll_count {
+            width: 100%;
+            word-wrap: break-word;
+            text-shadow: 1px 1px 1px white;
+        }
+
+        .container .result_area .result {
+            width: 100%;
+            word-wrap: break-word;
+            margin-top: 10px;
+            text-shadow: 1px 1px 1px white;
+        }
+
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text_area">擲骰子遊戲</div>
+        <div class="dice_area">
+            <div class="dice_1"></div>
+            <div class="dice_2"></div>
+            <div class="dice_3"></div>
+        </div>
+        <button type="button" class="game_start">開始擲骰</button>
+        <div class="result_area">
+            <div class="roll_count"></div>
+            <div class="result"></div>
+        </div>
+    </div>
+    <script>
+        const diceOne = document.querySelector('.dice_1');
+        const diceTwo = document.querySelector('.dice_2');
+        const diceThree = document.querySelector('.dice_3');
+        const gameStart = document.querySelector('.game_start');
+        const rollCount = document.querySelector('.roll_count');
+        const result = document.querySelector('.result');
+
+        let count = 0;
+        let diceOneValue = 1;
+        let diceTwoValue = 2;
+        let diceThreeValue = 3;
+        // ========================================================
+
+        gameStart.addEventListener('click', () => {
+            count = 0;
+            result.textContent = '';
+            rollCount.innerHTML = '';
+            let intervalDice = setInterval(function () {
+                getRandomNumber();
+
+                diceOneValue = getRandomNumber();
+                diceTwoValue = getRandomNumber();
+                diceThreeValue = getRandomNumber();
+                rollCount.innerHTML += `第一顆：${diceOneValue} , 第二顆：${diceTwoValue} , 第三顆：${diceThreeValue}<br>`;
+                count++;
+
+                diceOne.textContent = diceOneValue;
+                diceTwo.textContent = diceTwoValue;
+                diceThree.textContent = diceThreeValue;
+
+                console.log(diceOne.textContent, diceTwo.textContent, diceThree.textContent);
+
+                diceOne.style.backgroundImage = `url('./img/dice_${diceOneValue}.png')`;
+                diceTwo.style.backgroundImage = `url('./img/dice_${diceTwoValue}.png')`;
+                diceThree.style.backgroundImage = `url('./img/dice_${diceThreeValue}.png')`;
+
+
+                if (diceOneValue === diceTwoValue && diceTwoValue === diceThreeValue) {
+                    diceOne.style.animation = 'none';
+                    diceOne.style.color = 'transparent';
+                    diceTwo.style.animation = 'none';
+                    diceTwo.style.color = 'transparent';
+                    diceThree.style.animation = 'none';
+                    diceThree.style.color = 'transparent';
+                    result.textContent += `總擲骰次數：${count}`;
+                    clearInterval(intervalDice);
+                    return;
+                };
+            }, 30)
+        });
+
+        function getRandomNumber() {
+            let number = [1, 2, 3, 4, 5, 6];
+            return number[Math.floor(Math.random() * 6)];
+        }
+
+    </script>
+</body>
+
+</html>

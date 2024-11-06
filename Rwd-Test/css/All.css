@@ -1,0 +1,332 @@
+/* 「*」 = 通用選擇器，代表全部 */
+* {
+    /* 自動計算，去除padding、border的面積縮放效應 */
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.nav {
+    background-image: url(../img_homework/MAP.jpg);
+    background-position: top;
+    background-size: contain;
+    width: 370px;
+    height: 100%;
+    float: left;
+    padding: 100px;
+}
+
+@media (max-width:1200px) {
+    .nav {
+        width: 100%;
+        height: 100px;
+        position: relative;
+        padding: unset;
+    }
+}
+
+.logo {
+    background-image: url(../img_homework/_Huf58epDlt9vXiO8IIfPXxtXI.png);
+    background-position: center;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+@media (max-width:1200px) {
+    .logo {
+        width: 80px;
+        height: 80px;
+        margin: unset;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.logo:hover {
+    transition-duration: 2s;
+    transform: rotate(360deg);
+}
+
+@media (max-width:1200px) {
+    .logo:hover {
+        transition-duration: 2s;
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+
+.nav_btn_all {
+    width: 100%;
+}
+
+@media (max-width:1200px) {
+    .nav_btn_all {
+        width: unset;
+    }
+}
+
+@media (max-width:750px) {
+    .nav_btn_all {
+        width: 100%;
+        display: none;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        z-index: 10;
+    }
+}
+
+.nav_btn {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 50px;
+    border: solid black;
+    float: left;
+    background: linear-gradient(to top, rgb(117, 84, 13), rgb(255, 255, 255));
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    text-shadow: white 0.1em 0.1em 0.2em;
+    border-radius: 10%;
+    font-family: "メイリオ", Meiryo, "Noto Sans";
+}
+
+@media (max-width:1200px) {
+    .nav_btn {
+        width: unset;
+        margin-bottom: unset;
+        margin-right: 10px;
+        margin-top: calc(50px - 22px);
+        float: right;
+        border-radius: 20%;
+    }
+}
+
+@media (max-width:750px) {
+    .nav_btn {
+        width: 100%;
+        padding: 15px 0;
+        margin-bottom: 10px;
+        margin-right: unset;
+        border-radius: unset;
+    }
+}
+
+.nav_btn:hover {
+    transition-duration: 1s;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+.nav_btn:active {
+    color: white;
+}
+
+.container {
+    background-image: url(../img_homework/BG3.jpg);
+    background-position: center;
+    background-size: cover;
+    width: calc(100% - 370px);
+    height: 100%;
+    float: right;
+    padding-top: calc((100vh - 570px) / 2);
+}
+
+@media (max-width:1200px) {
+    .container {
+        width: 100%;
+        height: calc(100% - 100px);
+        padding: 100px 100px;
+    }
+}
+
+@media (max-width:750px) {
+    .container {
+        float: left;
+        padding: unset;
+    }
+}
+
+.content {
+    width: 960px;
+    height: 570px;
+    margin: auto;
+}
+
+@media (max-width:1400px) {
+    .content {
+        width: 800px;
+        height: 570px;
+    }
+}
+
+@media (max-width:1200px) {
+    .content {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+.img {
+    background-size: cover;
+    background-position: center;
+    width: calc((100% - 10px * 2) / 3);
+    height: 100%;
+    float: left;
+}
+
+@media (max-width:1400px) {
+    .img {
+        background-position: top;
+        height: 50%;
+    }
+}
+
+@media (max-width:1200px) {
+    .img {
+        width: calc((100% - 20px) / 3);
+        height: calc(50% - 5px);
+    }
+}
+
+@media (max-width:750px) {
+    .img {
+        width: 100%;
+        height: calc((100vh - 100px)/3);
+        float: left;
+    }
+}
+
+.img:hover {
+    transition-duration: 1s;
+    border-radius: 10%;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.8);
+    transform: rotateY(360deg);
+}
+
+.img_1 {
+    background-image: url(../img_homework/RIMUSAROMINSA.jpg)
+}
+
+.img_2 {
+    background-image: url(../img_homework/GURIDANIA.jpg);
+    margin: 0 10px;
+}
+
+.img_3 {
+    background-image: url(../img_homework/URUDAHA.jpg);
+}
+
+@media (max-width:1400px) {
+    .img_1 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .img_2 {
+        width: calc(50% - 5px);
+        /* unset = 改成無設定的狀態 */
+        margin-left: unset;
+        margin-right: 10px;
+    }
+
+    .img_3 {
+        width: calc(50% - 5px);
+    }
+}
+
+@media (max-width:750px) {
+    .img_1 {
+        width: 100%;
+        margin-bottom: unset;
+    }
+
+    .img_2 {
+        width: 100% ;
+        margin-right: unset;
+    }
+
+    .img_3 {
+        width: 100%;
+    }
+}
+
+/* 漢堡條=============================== */
+
+@media (max-width:750px) {
+    .ham_btn {
+        background-color: rgb(117, 84, 13);
+        width: 80px;
+        height: 80px;
+        left: 10px;
+        top: 10px;
+        /* display = 改變元素特性 */
+        /* block = 改變成區塊特性 */
+        display: block;
+        position: relative;
+    }
+
+    /* 此寫法代表指定該父層的子層，避免複製到其他地方時互相衝突 */
+    .ham_btn .line {
+        background-color: black;
+        width: 80%;
+        height: 10px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.5s;
+    }
+
+    .ham_btn .line_1 {
+        top: 25%;
+    }
+
+    .ham_btn .line_2 {
+        top: 50%;
+    }
+
+    .ham_btn .line_3 {
+        top: 75%;
+    }
+
+    /* checked = 當該項被勾選起來時會採取的動作 */
+    /* 「+」解釋：ham_switch勾選後，同層級的第一個元素ham_btn之後的line會採取的動作*/
+    #ham_switch:checked+.ham_btn .line_1 {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg)
+    }
+
+    #ham_switch:checked+.ham_btn .line_2 {
+        /* none = 隱藏 */
+        display: none;
+    }
+
+    #ham_switch:checked+.ham_btn .line_3 {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg)
+    }
+
+    .nav_btn_all {
+        display: none;
+        width: 200px;
+    }
+
+    /* 「~」解釋：ham_switch勾選後，同層級中尋找到的元素menu會採取的動作 */
+    #ham_switch:checked~.nav_btn_all {
+        display: block;
+        width: 100%;
+    }
+}

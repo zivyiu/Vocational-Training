@@ -1,0 +1,128 @@
+/* 「*」 = 通用選擇器，代表全部 */
+* {
+    /* 自動計算，去除padding、border的面積縮放效應 */
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.nav {
+    background-image: url(../img_homework/MAP.jpg);
+    background-position: top;
+    background-size: contain;
+    width: 370px;
+    height: 100%;
+    float: left;
+    padding: 100px;
+}
+
+.logo {
+    background-image: url(../img_homework/_Huf58epDlt9vXiO8IIfPXxtXI.png);
+    background-position: center;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.logo:hover {
+    transition-duration: 2s;
+    transform: rotate(360deg);
+}
+
+.nav_btn_all {
+    width: 100%;
+    height: 200px;
+}
+
+.nav_btn {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 5px;
+    border: solid black;
+    float: left;
+    background: linear-gradient(to top, rgb(117, 84, 13), rgb(255, 255, 255));
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    text-shadow: white 0.1em 0.1em 0.2em;
+    border-radius: 10%;
+    font-family: "メイリオ", Meiryo, "Noto Sans";
+}
+
+.nav_btn:hover {
+    transition-duration: 1s;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.8);
+}
+
+.nav_btn:active {
+    color: white;
+}
+
+.container {
+    background-image: url(../img_homework/BG3.jpg);
+    background-position: center;
+    background-size: cover;
+    width: calc(100% - 370px);
+    height: 100%;
+    float: right;
+    padding-top: calc((100vh - 570px) / 2);
+}
+
+.content {
+    width: 960px;
+    height: 570px;
+    margin: auto;
+}
+
+.img {
+    background-size: cover;
+    background-position: center;
+    width: calc((100% - 10px * 2) / 3);
+    height: 100%;
+    float: left;
+}
+
+.img:hover {
+    transition-duration: 1s;
+    border-radius: 10%;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.8);
+    transform: rotateY(360deg);
+}
+
+.img_1 {
+    background-image: url(../img_homework/RIMUSAROMINSA.jpg)
+}
+
+.img_2 {
+    background-image: url(../img_homework/GURIDANIA.jpg);
+    margin: 0 10px;
+}
+
+.img_3 {
+    background-image: url(../img_homework/URUDAHA.jpg);
+}
+/* ========================== */
+
+* {
+    box-sizing: border-box;
+}
+
+.ham_btn {
+    /* background-color: gray;
+    width: 100px;
+    height: 100px; */
+    /* display = 改變元素特性 */
+    /* block = 改變成區塊特性 */
+    display: none;
+    /* position: relative; */
+}

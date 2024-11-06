@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Playwrite+CU:wght@100..400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/weather.css">
+</head>
+
+<body>
+    <div class="nav"data-aos="fade-down">
+        <button type="button" class="taiwan_all_btn" data-aos="zoom-in-up">
+            <h2>全臺</h2>
+        </button>
+        <button type="button" class="north_area_btn" data-aos="zoom-in-up">
+            <h2>北部</h2>
+        </button>
+        <button type="button" class="central_area_btn" data-aos="zoom-in-up">
+            <h2>中部</h2>
+        </button>
+        <button type="button" class="south_area_btn" data-aos="zoom-in-up">
+            <h2>南部</h2>
+        </button>
+        <button type="button" class="east_area_btn" data-aos="zoom-in-up">
+            <h2>東部</h2>
+        </button>
+        <button type="button" class="outlying_islands_btn" data-aos="zoom-in-up">
+            <h2>外島地區</h2>
+        </button>
+    </div>
+    <div class="card_region">
+        <div class="card">
+            <h2>${city}</h2>
+            <div><span>${orgData_City.startTime}</span></div>
+            <div><span>${orgData_City.endTime}</span></div>
+            <br>
+            <div><span>降雨機率${orgData_City.pop}%</span></div>
+            <div><span>溫度${orgData_City.minTemp}℃ ~ ${orgData_City.maxTemp}℃</span></div>
+            <div><span>${orgData_City.ci}</span></div>
+            <div class="img_container"><img class="wather_img" src="./img/${orgData_City.wxValue}.svg" alt=""></div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+        <script src="./js/weather.js"></script>
+</body>
+
+</html>

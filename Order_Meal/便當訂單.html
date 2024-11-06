@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>便當訂單</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .img-block {
+            display: flex;
+            justify-content: center;
+            background-color: rgb(195, 31, 31);
+        }
+
+        img {
+            height: 50dvh;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 30px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            padding: 4px 12px 12px;
+            border: 1px solid #000000;
+            border-radius: 8px;
+        }
+
+        .card legend {
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+
+        .card label,
+        .card input {
+            cursor: pointer;
+        }
+
+        .card .choose {
+            display: flex;
+            justify-content: center;
+            height: 22.5px;
+            color: blue;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            color: #333333;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #333333;
+            color: #fff;
+        }
+
+        .statistics-block {
+            padding: 12px 30px;
+        }
+
+        .total {
+            font-size: 1.5rem;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <figure class="img-block">
+            <img src="./便當菜單.jpg" alt="便當菜單">
+        </figure>
+        <div class="container">
+            <fieldset class="card" v-for="(person, index) in people" :key="index">
+                <legend>{{ person.name }}</legend>
+                <label v-for="(option, idx) in mealOptions" :key="idx">
+                    <input type="radio" :value="option" v-model="person.mealSelected" :disabled="orderSubmitted">
+                    {{ option }}
+                </label>
+                <hr>
+                <p class="choose">{{ person.mealSelected || "尚未選擇" }}</p>
+            </fieldset>
+        </div>
+        <hr>
+        <aside class="statistics-block">
+            <div>
+                <button type="button" class="btn" @click="submitMealOrder" :disabled="orderSubmitted">送出訂單</button>
+                <button type="button" class="btn" @click="resetMealOrder">重訂便當</button>
+            </div>
+            <p>總共訂 {{ totalOrderCount }} 個便當</p>
+            <p>
+                共
+                <b class="total">{{ totalOrderPrice }}</b>
+                元
+            </p>
+        </aside>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    people: [
+                        { name: '老師', mealSelected: '' },
+                        { name: '助教', mealSelected: '' },
+                        { name: '同學A', mealSelected: '' },
+                        { name: '同學B', mealSelected: '' },
+                        { name: '同學C', mealSelected: '' },
+                        { name: '同學D', mealSelected: '' },
+                        { name: '同學E', mealSelected: '' },
+                        { name: '同學F', mealSelected: '' },
+                        { name: '同學G', mealSelected: '' },
+                        { name: '同學H', mealSelected: '' },
+                        { name: '同學I', mealSelected: '' },
+                        { name: '同學J', mealSelected: '' },
+                        { name: '同學K', mealSelected: '' },
+                        { name: '同學L', mealSelected: '' },
+                        { name: '同學M', mealSelected: '' },
+                        { name: '同學N', mealSelected: '' },
+                        { name: '同學O', mealSelected: '' },
+                    ],
+                    mealOptions: [
+                        '大雞腿便當', '大滷雞腿便當', '日式豬排便當', '招牌排骨便當', '鯖魚便當', '三杯雞便當', '茄汁排骨便當', '招牌雞腿便當'
+                    ],
+                    mealPrices: {
+                        '大雞腿便當': 95,
+                        '大滷雞腿便當': 95,
+                        '日式豬排便當': 85,
+                        '招牌排骨便當': 85,
+                        '鯖魚便當': 85,
+                        '三杯雞便當': 85,
+                        '茄汁排骨便當': 85,
+                        '招牌雞腿便當': 65,
+                    },
+                    orderSubmitted: false 
+                };
+            },
+            computed: {
+                totalOrderCount() {
+                     let count = 0; 
+                    for (let i = 0; i < this.people.length; i++) {
+                        if (this.people[i].mealSelected) { 
+                            count++;
+                        }
+                    }
+                    return count;
+                },
+                totalOrderPrice() {
+                    let total = 0; 
+                    for (let i = 0; i < this.people.length; i++) {
+                        let selectedMeal = this.people[i].mealSelected; 
+                        if (selectedMeal) { 
+                            total += this.mealPrices[selectedMeal]; 
+                        }
+                    }
+                    return total; 
+                }
+            },
+            methods: {
+                submitMealOrder() {
+                    this.orderSubmitted = true;
+                },
+                resetMealOrder() {
+                    this.orderSubmitted = false;
+                    for (let i = 0; i < this.people.length; i++) {
+                        this.people[i].mealSelected = ''; 
+                    }
+                }
+            },
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
